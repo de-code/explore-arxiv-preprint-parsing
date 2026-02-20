@@ -22,10 +22,36 @@ comet-arxiv-results-list-1000-dois:
 		| jq --raw-output .doi
 
 
+comet-arxiv-author-affiliations-train-json-to-csv:
+	@mkdir -p data
+	cat arxiv-author-affiliations/train.json \
+		| jq -r '["arxiv_id","doi"], (.[] | [.arxiv_id, .doi] ) | @csv' \
+		| tee data/arxiv-author-affiliations-train.csv
+
+
+comet-arxiv-author-affiliations-test-json-to-csv:
+	@mkdir -p data
+	cat arxiv-author-affiliations/test.json \
+		| jq -r '["arxiv_id","doi"], (.[] | [.arxiv_id, .doi] ) | @csv' \
+		| tee data/arxiv-author-affiliations-test.csv
+
+
 download-example-arxiv-pdfs:
 	uv run \
 		arxiv-preprint-parsing/utils/download_arxiv_pdfs/download_arxiv_pdfs_from_doi_file_input/download_arxiv_pdfs.py \
 		--input_path example-data/example-arxiv-papers.csv
+
+
+download-arxiv-author-affiliations-train-arxiv-pdfs:
+	uv run \
+		arxiv-preprint-parsing/utils/download_arxiv_pdfs/download_arxiv_pdfs_from_doi_file_input/download_arxiv_pdfs.py \
+		--input_path data/arxiv-author-affiliations-train.csv
+
+
+download-arxiv-author-affiliations-test-arxiv-pdfs:
+	uv run \
+		arxiv-preprint-parsing/utils/download_arxiv_pdfs/download_arxiv_pdfs_from_doi_file_input/download_arxiv_pdfs.py \
+		--input_path data/arxiv-author-affiliations-test.csv
 
 
 convert-pds-to-markdown:
