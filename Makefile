@@ -61,6 +61,14 @@ convert-pds-to-markdown:
 		 --output-dir example-data/example-arxiv-papers_md
 
 
+example-data-convert-pds-to-tei-xml:
+	uv run \
+		 explore_arxiv_preprint_parsing/batch_convert_pdf_to_tei_xml_grobid.py \
+		 --input-dir example-data/example-arxiv-papers_pdfs \
+		 --output-dir example-data/example-arxiv-papers_tei_xml \
+		 --endpoint-url http://localhost:8080/api/processHeaderDocument
+
+
 vllm-serve:
 	VLLM_ALLOW_RUNTIME_LORA_UPDATING=True \
 		uv run vllm serve Qwen/Qwen3-8B-AWQ \
