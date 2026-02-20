@@ -1,0 +1,3 @@
+[submodule "arxiv-preprint-parsing"]
+	path = arxiv-preprint-parsing
+	url = https://github.com/cometadata/arxiv-preprint-parsing.git
