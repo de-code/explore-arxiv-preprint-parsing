@@ -1,3 +1,6 @@
 [submodule "arxiv-preprint-parsing"]
 	path = arxiv-preprint-parsing
 	url = https://github.com/cometadata/arxiv-preprint-parsing.git
+[submodule "arxiv-author-affiliations"]
+	path = arxiv-author-affiliations
+	url = https://huggingface.co/datasets/cometadata/arxiv-author-affiliations
