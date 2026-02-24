@@ -69,6 +69,14 @@ example-data-convert-pds-to-tei-xml:
 		 --endpoint-url http://localhost:8080/api/processFulltextDocument
 
 
+train-data-convert-pds-to-tei-xml:
+	uv run \
+		 explore_arxiv_preprint_parsing/batch_convert_pdf_to_tei_xml_grobid.py \
+		 --input-dir data/arxiv-author-affiliations-train_pdfs \
+		 --output-dir data/arxiv-author-affiliations-train_pdfs_tei_xml_full_text \
+		 --endpoint-url http://localhost:8080/api/processFulltextDocument
+
+
 example-data-convert-tei-xml-to-results-jsonl:
 	uv run \
 		 explore_arxiv_preprint_parsing/batch_convert_tei_xml_to_affiliation_json.py \
