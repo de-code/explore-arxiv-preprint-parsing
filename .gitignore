@@ -12,4 +12,5 @@ wheels/
 data
 example-data/**/*.md
 example-data/**/*.tei.xml
+example-data/example-arxiv-papers_tei_xml_results.jsonl
 *.pdf

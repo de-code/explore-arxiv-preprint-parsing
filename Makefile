@@ -69,6 +69,14 @@ example-data-convert-pds-to-tei-xml:
 		 --endpoint-url http://localhost:8080/api/processHeaderDocument
 
 
+example-data-convert-tei-xml-to-results-jsonl:
+	uv run \
+		 explore_arxiv_preprint_parsing/batch_convert_tei_xml_to_affiliation_json.py \
+		 --input-csv example-data/example-arxiv-papers.csv \
+		 --tei-xml-dir example-data/example-arxiv-papers_tei_xml \
+		 --output-file example-data/example-arxiv-papers_tei_xml_results.jsonl
+
+
 vllm-serve:
 	VLLM_ALLOW_RUNTIME_LORA_UPDATING=True \
 		uv run vllm serve Qwen/Qwen3-8B-AWQ \
