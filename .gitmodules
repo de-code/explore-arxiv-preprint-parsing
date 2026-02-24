@@ -4,3 +4,6 @@
 [submodule "arxiv-author-affiliations"]
 	path = arxiv-author-affiliations
 	url = https://huggingface.co/datasets/cometadata/arxiv-author-affiliations
+[submodule "evaluate-grobid-affiliation-parsing"]
+	path = evaluate-grobid-affiliation-parsing
+	url = https://github.com/cometadata/evaluate-grobid-affiliation-parsing.git
