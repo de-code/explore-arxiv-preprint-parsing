@@ -65,8 +65,8 @@ example-data-convert-pds-to-tei-xml:
 	uv run \
 		 explore_arxiv_preprint_parsing/batch_convert_pdf_to_tei_xml_grobid.py \
 		 --input-dir example-data/example-arxiv-papers_pdfs \
-		 --output-dir example-data/example-arxiv-papers_tei_xml \
-		 --endpoint-url http://localhost:8080/api/processHeaderDocument
+		 --output-dir example-data/example-arxiv-papers_tei_xml_full_text \
+		 --endpoint-url http://localhost:8080/api/processFulltextDocument
 
 
 example-data-convert-tei-xml-to-results-jsonl:
