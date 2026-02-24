@@ -59,15 +59,27 @@ def run(
     LOGGER.debug("files: %r", list(Path(input_dir).glob("*.pdf")))
     output_dir_path = Path(output_dir)
     output_dir_path.mkdir(exist_ok=True, parents=True)
+    failed_pdf_paths: list[str] = []
+    last_exc: Exception | None = None
     for pdf_path in tqdm(pdf_files):
         tei_xml_output_path = output_dir_path / pdf_path.with_suffix(".tei.xml").name
         if tei_xml_output_path.exists():
             LOGGER.info("skipping already converted: %r", tei_xml_output_path.name)
-        convert_pdf_to_tei_xml(
-            pdf_path=pdf_path,
-            tei_xml_output_path=tei_xml_output_path,
-            endpoint_url=endpoint_url
-        )
+            continue
+        try:
+            convert_pdf_to_tei_xml(
+                pdf_path=pdf_path,
+                tei_xml_output_path=tei_xml_output_path,
+                endpoint_url=endpoint_url
+            )
+        except Exception as exc:
+            last_exc = exc
+            failed_pdf_paths.append(str(pdf_path))
+            LOGGER.warning("Failed to process %r due to %r", str(pdf_path), exc)
+    if last_exc is not None:
+        raise RuntimeError(
+            f"Failed to process some PDF: {failed_pdf_paths} due to {repr(last_exc)}"
+        ) from last_exc
 
 
 def main():
